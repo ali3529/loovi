@@ -33,39 +33,57 @@ const LatestProduct = () => {
     {
       _id: 1,
       image: "location",
-      title: "Augmented Reality"
+      title: "Augmented Reality",
     },
     {
       _id: 2,
       image: "Metaverse",
-      title: "Metaverse"
+      title: "Metaverse",
     },
     {
       _id: 3,
       image: "fer",
-      title: "Virtual Reality"
-    }
+      title: "Virtual Reality",
+    },
   ];
 
   return (
     <>
-      <Slider {...settings}>
-        {vrProducts.map((product) => (
-          <div className="item" key={product._id}>
-            <div className="block-style-thirtySeven">
-              <div className="img-meta d-flex align-items-center justify-content-center">
-                <img
-                  src={`images/media/${product.image}.jpg`}
-                  alt="vr product"
-                />
+      <div
+        className="fancy-feature-thirtySix lg-container pt-170 pb-110 md-pt-120 md-pb-60"
+        id="product"
+      >
+        <div className="container position-relative">
+          <div className="row">
+            <div
+              className="col-xl-3 col-lg-4"
+              data-aos="fade-right"
+              data-aos-duration="1200"
+            ></div>
+            <div className="col-xl-9 col-lg-8">
+              <div className="product_slider_one vr-landing-slider">
+                <Slider {...settings}>
+                  {vrProducts.map((product) => (
+                    <div className="item" key={product._id}>
+                      <div className="block-style-thirtySeven">
+                        <div className="img-meta d-flex align-items-center justify-content-center">
+                          <img
+                            src={`images/media/${product.image}.jpg`}
+                            alt="vr product"
+                          />
+                        </div>
+                        <h4 className="p-title mt-25">
+                          <a href={product.productLink}>{product.title}</a>
+                        </h4>
+                      </div>
+                    </div>
+                  ))}
+                </Slider>
               </div>
-              <h4 className="p-title mt-25">
-                <a href={product.productLink}>{product.title}</a>
-              </h4> 
             </div>
           </div>
-        ))}
-      </Slider>
+        </div>
+      </div>
     </>
   );
 };

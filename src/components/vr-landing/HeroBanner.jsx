@@ -2,7 +2,8 @@ import React from "react";
 
 const HeroBanner = () => {
   return (
-    <div className="row">
+    <>
+     <div className="row">
       <div className="col-lg-6">
         <h1 className="hero-heading" data-aos="fade-right">
           The reality of a dream.
@@ -37,6 +38,37 @@ const HeroBanner = () => {
         </a> */}
       </div>
     </div>
+    <div className="screen-holder">
+            <img src="images/shape/241.svg" alt="" className="img-meta" />
+            <img
+              src="images/header.jpg"
+              alt="illustration"
+              className="shapes vr-image"
+              data-aos="fade-up"
+            />
+            <img
+              src="images/shape/242.svg"
+              alt="illustration"
+              className="shapes shape-one"
+              data-aos="fade-right"
+            />
+            <img
+              src="images/shape/242.svg"
+              alt="illustration"
+              className="shapes shape-two"
+              width="45"
+              data-aos="fade-up"
+            />
+            <img
+              src="images/shape/242.svg"
+              alt="illustration"
+              className="shapes shape-three"
+              width="75"
+              data-aos="fade-down"
+            />
+          </div>
+    </>
+   
   );
 };
 

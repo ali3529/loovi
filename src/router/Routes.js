@@ -26,6 +26,7 @@ import NotFound from "../views/NotFound";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ScrollTopBehaviour from "../components/ScrollTopBehaviour";
 import VrLanding from "../views/home-page/VrLanding";
+import Testtt from "../Testtt";
 
 const Routes = () => {
   return (
@@ -40,6 +41,7 @@ const Routes = () => {
           <Route path="/service-details" component={ServiceDetails} /> 
           <Route path="/portfolio" component={PortfolioV5} />
           <Route path="/portfolio-details" component={PortfolioDetailsV1} />
+          <Route path="/testt" component={Testtt} />
           <Route component={NotFound} />
         </Switch>
       </Router>

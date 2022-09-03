@@ -10,16 +10,16 @@ import HeaderLanding from "../../components/vr-landing/Header";
 import HeroBanner from "../../components/vr-landing/HeroBanner";
 import LatestProduct from "../../components/vr-landing/LatestProduct";
 import Testimonials from "../../components/vr-landing/Testimonials";
-import { urlFor,client} from "../../Client"
+import { urlFor, client } from "../../Client";
 
 const VrLanding = () => {
   const [home, setHome] = useState([]);
-  useEffect(()=>{
-    const query = '*[_type = "home"]'
-    client.fetch(query).then((data)=>{
-      setHome(data)
-    })
-  })
+  useEffect(() => {
+    const query = '*[_type = "home"]';
+    client.fetch(query).then((data) => {
+      setHome(data);
+    });
+  });
   return (
     <div className="main-page-wrapper p0 font-gordita">
       <HeaderLanding />
@@ -33,72 +33,11 @@ const VrLanding = () => {
       <div className="hero-banner-fourteen lg-container" id="home">
         <div className="container">
           <HeroBanner />
-          <div className="screen-holder">
-            <img src="images/shape/241.svg" alt="" className="img-meta" />
-            <img
-              src="images/header.jpg"
-              alt="illustration"
-              className="shapes vr-image"
-              data-aos="fade-up"
-            />
-            <img
-              src="images/shape/242.svg"
-              alt="illustration"
-              className="shapes shape-one"
-              data-aos="fade-right"
-            />
-            <img
-              src="images/shape/242.svg"
-              alt="illustration"
-              className="shapes shape-two"
-              width="45"
-              data-aos="fade-up"
-            />
-            <img
-              src="images/shape/242.svg"
-              alt="illustration"
-              className="shapes shape-three"
-              width="75"
-              data-aos="fade-down"
-            />
-          </div>
-          {/* <!-- /.screen-holder --> */}
         </div>
       </div>
-      {/* <!-- /.hero-banner-fourteen --> */}
 
-      {/* <!-- 
-			=============================================
-				Fancy Feature Thirty Six
-			============================================== 
-			--> */}
-      <div
-        className="fancy-feature-thirtySix lg-container pt-170 pb-110 md-pt-120 md-pb-60"
-        id="product"
-      >
-        <div className="container position-relative">
-          <div className="row">
-            <div
-              className="col-xl-3 col-lg-4"
-              data-aos="fade-right"
-              data-aos-duration="1200"
-            >
-            </div>
-            <div className="col-xl-9 col-lg-8">
-              <div className="product_slider_one vr-landing-slider">
-                <LatestProduct />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* <!-- /.fancy-feature-thirtySix --> */}
+      <LatestProduct />
 
-      {/* <!-- 
-			=============================================
-				Fancy Feature Thirty Seven
-			============================================== 
-			--> */}
       <div
         className="fancy-feature-thirtySeven lg-container pt-120"
         id="feature"
@@ -196,11 +135,7 @@ const VrLanding = () => {
                 </a>
               </div>
               <div className="col-lg-6" data-aos="fade-right">
-                <img
-                  src="images/media/meta.jpg"
-                  alt=""
-                  className="md-mt-70"
-                />
+                <img src="images/media/meta.jpg" alt="" className="md-mt-70" />
               </div>
             </div>
           </div>
