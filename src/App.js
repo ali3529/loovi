@@ -4,7 +4,7 @@ import Routes from "./router/Routes";
 import ScrollToTop from "./components/ScrollToTop";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
+import "./assets/main.scss";
 const App = () => {
   useEffect(() => {
     AOS.init({

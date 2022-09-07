@@ -1,7 +1,9 @@
 import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import "./assets/main.scss";
+
+const langouge=true
+
 
 ReactDOM.render(<App />, document.getElementById("root"));
 // document.getElementsByTagName("html")[0].setAttribute("dir", "rtl");
