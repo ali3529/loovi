@@ -29,21 +29,14 @@ const FooterSeven = () => {
           <li>
             <Link to="/">Home</Link>
           </li>
-          <li>
-            <Link to="/pricing-cs">Pricing</Link>
-          </li>
+         
           <li>
             <Link to="/about-eo">About us</Link>
           </li>
-          <li>
-            <Link to="/features-customer-support">Careers</Link>
-          </li>
-          <li>
-            <Link to="/solution-management">Features</Link>
-          </li>
-          <li>
+         
+          {/* <li>
             <Link to="/blog-v3">Blog</Link>
-          </li>
+          </li> */}
         </ul>
       </div>
 
@@ -54,7 +47,7 @@ const FooterSeven = () => {
         data-aos-delay="150"
       >
         <h5 className="title">Legal</h5>
-        <ul className="footer-list">
+        {/* <ul className="footer-list">
           <li>
             <Link to="/terms-conditions">Terms of use</Link>
           </li>
@@ -67,7 +60,7 @@ const FooterSeven = () => {
           <li>
             <Link to="/terms-conditions">Cookie policy</Link>
           </li>
-        </ul>
+        </ul> */}
       </div>
       <div
         className="col-xl-4 col-lg-5 mb-40"

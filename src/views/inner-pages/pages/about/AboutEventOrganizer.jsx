@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import Header from "../../../../components/header/HeaderFour";
 import FancyVideoOne from "../../../../components/video/FancyVideoOne";
@@ -10,16 +10,22 @@ import CallToActionFive from "../../../../components/call-to-action/CallToAction
 import FooterFour from "../../../../components/footer/FooterFour";
 import BlogStyle5 from "../../../../components/blog/BlogStyle5";
 import HeaderLanding from "../../../../components/vr-landing/Header";
+import { useTranslation } from "react-i18next";
+import { getAboutUsData } from "../../../../services/UseSantyClient";
+import FooterSeven from "../../../../components/footer/FooterSeven";
+import CopyRightThree from "../../../../components/footer/CopyRightThree";
 const EventOrganizer = () => {
+  const { t, i18n } = useTranslation();
+  const [about, setabout] = useState([]);
+  useEffect(() => {
+    getAboutUsData()
+      .then((res) => setabout(res[0]))
+      // .then((res) => console.log("savasjhvass", res[0]))
+      .catch(console.error);
+  }, []);
+  console.log("sdvksmdkbds", about);
   return (
     <div className="main-page-wrapper p0">
-      <Helmet>
-        <title>
-          About Event Organizer || Deski-Saas & Software React Template
-        </title>
-      </Helmet>
-      {/* End Page SEO Content */}
-
       <HeaderLanding />
       {/* End HeaderFour */}
 
@@ -38,9 +44,15 @@ const EventOrganizer = () => {
           className="shapes shape-two"
         />
         <div className="container">
-          <h1 className="title font-slab">About us</h1>
+          <h1 className="title font-slab">
+            {i18n.language == "en" ? "About us" : "تماس با ما"}
+          </h1>
           <div className="fancy-video-box-one mb-130 md-mb-70">
-            <FancyVideoOne />
+            <img
+              src={about?.about_us_image?.asset?.url}
+              alt="media"
+              className="main-img"
+            />
           </div>
           {/* /.fancy-video-box-one */}
 
@@ -51,12 +63,21 @@ const EventOrganizer = () => {
               data-aos-duration="1200"
             >
               <div className="client-info font-rubik">
-                Over <span>150,000+ client</span>
+              
+                <span>
+                  {i18n.language == "en"
+                    ? about?.about_us_customer_number
+                    : about?.about_us_customer_number_fa}
+                </span>
               </div>
               <div className="title-style-five">
                 <h2>
-                  <span>Best event</span>
-                  <br /> & ticket platform platform.
+                  <span>
+                    {i18n.language == "en"
+                      ? about?.about_us_customer_section_title
+                      : about?.about_us_customer_section_title_fa}
+                  </span>
+                  {/* <br /> & ticket platform platform. */}
                 </h2>
               </div>
             </div>
@@ -65,7 +86,7 @@ const EventOrganizer = () => {
               data-aos="fade-left"
               data-aos-duration="1200"
             >
-              <AboutTabs />
+              <AboutTabs data={about} />
             </div>
           </div>
         </div>
@@ -78,7 +99,7 @@ const EventOrganizer = () => {
       <div className="counter-with-icon-one">
         <div className="container">
           <div className="border-top pt-50 md-pt-10">
-            <CounterThree />
+            <CounterThree data={about}/>
           </div>
         </div>
       </div>
@@ -100,13 +121,13 @@ const EventOrganizer = () => {
         />
         <div className="container">
           <div className="title-style-five text-center mb-90 md-mb-60">
-            <h6>Our Team</h6>
-            <h2>The team behind deski </h2>
+            <h6>{i18n.language == "en" ?"Our Team":"نیم ما"}</h6>
+            <h2>{i18n.language == "en" ?about?.ourteam_title:about?.ourteam_title_fa} </h2>
           </div>
 
           <div className="team-wrapper">
             <div className="row">
-              <TeamFive />
+              <TeamFive data={about}/>
             </div>
             <img
               src="images/shape/126.svg"
@@ -132,13 +153,13 @@ const EventOrganizer = () => {
               data-aos-duration="1200"
             >
               <div className="title-style-five mb-35">
-                <h6>Why choose us</h6>
+                <h6> {i18n.language == "en" ?"Why choose us":"چرا باید مارا انتخاب کنید"}</h6>
                 <h2>
-                  <span>Why you should</span> choose us?
+                  <span>{i18n.language == "en" ?about?.faq_title:about?.faq_title_fa}</span> 
                 </h2>
               </div>
               {/* End title */}
-              <Faq />
+              <Faq data={about} />
             </div>
 
             <div
@@ -164,18 +185,19 @@ const EventOrganizer = () => {
       {/* =====================================================
 				Feature Blog Four
 			===================================================== */}
-      <div className="feature-blog-four mt-250 md-mt-200">
+      {/* <div className="feature-blog-four mt-250 md-mt-200">
         <div className="container">
           <div className="title-style-five text-center mb-70 md-mb-50">
             <h6>News & Updates</h6>
             <h2>Latest news & articles</h2>
           </div>
-          {/* End .title */}
+        
           <div className="row">
             <BlogStyle5 />
           </div>
         </div>
       </div>
+       */}
       {/* /.feature-blog-four */}
 
       {/* 
@@ -193,30 +215,19 @@ const EventOrganizer = () => {
      =============================================
 			Footer Four
 		  ============================================== */}
-      <footer className="theme-footer-four">
-        <div className="top-footer">
-          <div className="container">
-            <FooterFour />
+      <footer className="theme-footer-seven mt-120 md-mt-100">
+        <div className="lg-container">
+          <div className="container inner-btn-black">
+            <FooterSeven />
           </div>
-          {/* /.container */}
-        </div>
 
-        <div className="container">
-          <div className="bottom-footer-content">
-            <p>
-              Copyright @{new Date().getFullYear()}{" "}
-              <a
-                href="https://themeforest.net/user/ib-themes/portfolio"
-                target="_blank"
-                rel="noreferrer"
-              >
-                ib-themes
-              </a>{" "}
-              inc.
-            </p>
+          <div className="container">
+            <div className="bottom-footer">
+              <CopyRightThree />
+            </div>
           </div>
-          {/* /.bottom-footer */}
         </div>
+        {/* /.lg-container */}
       </footer>
       {/* /.theme-footer-four */}
     </div>

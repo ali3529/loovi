@@ -1,38 +1,54 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
-const AboutTabs = () => {
+const AboutTabs = ({ data }) => {
+  const { t, i18n } = useTranslation();
   return (
     <>
       <Tabs>
         <TabList className="nav nav-tabs md-mt-50">
-          <Tab className="nav-link font-slab">Our Story</Tab>
-          <Tab className="nav-link font-slab">Our Mission</Tab>
-          <Tab className="nav-link font-slab">Our Vision</Tab>
+          <Tab className="nav-link font-slab">
+            {i18n.language == "en"
+              ? data?.about_tab?.about_tab_1
+              : data?.about_tab?.about_tab_1_fa}
+          </Tab>
+          <Tab className="nav-link font-slab">
+            {i18n.language == "en"
+              ? data?.about_tab?.about_tab_2
+              : data?.about_tab?.about_tab_2_fa}
+          </Tab>
+          <Tab className="nav-link font-slab">
+            {i18n.language == "en"
+              ? data?.about_tab?.about_tab_3
+              : data?.about_tab?.about_tab_3_fa}
+          </Tab>
         </TabList>
         {/* End TabList */}
 
         <div className="tab-content mt-20">
           <TabPanel>
             <p className="font-rubik">
-               Loovi, started with small team with different skills and expertises, our single mission created empathy and make us strong
+          
+              {i18n.language == "en"
+                ? data?.about_tab?.about_tab_1_description
+                : data?.about_tab?.about_tab_1_description_fa}
             </p>
           </TabPanel>
           <TabPanel>
             <p className="font-rubik">
-               Loovi contributes to the creation of a new reality, which will enhance the well-being of individuals worldwide, We give businesses the opportunity to create stronger connections with consumers
+            {i18n.language == "en"
+                ? data?.about_tab?.about_tab_2_description
+                : data?.about_tab?.about_tab_2_description_fa}
             </p>
           </TabPanel>
           <TabPanel>
             <p className="font-rubik">
-              There are many variations of passages of Lorem Ipsum available,
-              but the majority,
+            {i18n.language == "en"
+                ? data?.about_tab?.about_tab_3_description
+                : data?.about_tab?.about_tab_3_description_fa}
             </p>
-            <p className="font-rubik">
-              Many desktop publishing packages and web page editors now use
-              Lorem Ipsum as their default model text, and a search for 'lorem
-              ipsum' will uncover many web sites still in their infancy.
-            </p>
+           
           </TabPanel>
         </div>
         {/* End TabContent */}

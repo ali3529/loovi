@@ -1,6 +1,8 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const BlockFeaturesOne = ({data}) => {
+  const { t, i18n } = useTranslation();
   const {
     section_3_description,
     section_3_description_fa,
@@ -17,14 +19,14 @@ const BlockFeaturesOne = ({data}) => {
         <div className="col-xl-5 col-lg-6" data-aos="fade-right">
           <div className="title-style-sixteen">
             {/* section 3 up_text */}
-            <div className="upper-title">{section_3_upper_title}</div>
+            <div className="upper-title">{i18n.language=="en"?section_3_upper_title:section_3_upper_title_fa}</div>
             <h2>
               {/* READY, <br /> HEADSET, GO */}
-              {section_3_title}
+              {i18n.language=="en"?section_3_title:section_3_title_fa}
             </h2>
           </div>
           <p className="mt-30 pr-xl-5">
-         {section_3_description}
+         {i18n.language=="en"?section_3_description:section_3_description_fa}
           </p>
         </div>
         <div

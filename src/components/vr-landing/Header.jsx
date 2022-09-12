@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Modal from "react-modal";
 import MegaMenuLanding from "../header/mega-menu/MegaMenuLanding";
 import HeaderPopupForm from "../form/HeaderPopupForm";
+import { useTranslation } from "react-i18next";
 const logo = "images/logo/logo2.png";
 
 const HeaderLanding = () => {
@@ -11,6 +12,16 @@ const HeaderLanding = () => {
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
   const [navbar, setNavbar] = useState(false);
+
+  const { t, i18n } = useTranslation();
+
+  const setLanguage = (language) => {
+    if (i18n.language == language) return;
+    i18n.changeLanguage(language);
+    localStorage.setItem("lan", language);
+    window.location.reload();
+    console.log("dsvksdmbkd", i18n.language);
+  };
 
   function toggleModalOne() {
     setIsOpen(!isOpen);
@@ -77,27 +88,37 @@ const HeaderLanding = () => {
                     offset={-500}
                   >
                     <li className="nav-item">
-                      <Link className="nav-link" to={"/"}>Home</Link>
+                      <Link className="nav-link" to={"/"}>
+                        {i18n.language == "en" ? "home" : "خانه"}
+                      </Link>
                     </li>
                     <li className="nav-item">
-                      <Link className="nav-link" to={"/services"}>Services</Link>
+                      <Link className="nav-link" to={"/services"}>
+                        {i18n.language == "en" ? "Services" : "خدمات"}
+                      </Link>
                     </li>
-                   
+
                     <li className="nav-item">
-                      <Link className="nav-link" to={"/about"}>About Us</Link>
+                      <Link className="nav-link" to={"/about"}>
+                        {i18n.language == "en" ? "About Us" : "درباره ما"}
+                      </Link>
                     </li>
                     <li className="nav-item">
-                    <Link className="nav-link" to={"/portfolio"}>Portfolio</Link>
+                      <Link className="nav-link" to={"/portfolio"}>
+                        {i18n.language == "en" ? "Portfolio" : "نمونه کار ها"}
+                      </Link>
                     </li>
                   </Scrollspy>
                 </div>
               </div>
             </div>
           </nav>
-          <div className="right-widget">
-            <button className="demo-button" onClick={toggleModalOne}>
-              <span>Contact Us</span>
-              <img src="images/icon/user.svg" alt="icon" />
+          <div className="right-widget d-flex flex-row ">
+            <button onClick={() => setLanguage("fa")} className="mr-2">
+              <img src="/images/iran_flag.png"/>
+            </button>
+            <button onClick={() => setLanguage("en")} className="mr-2">
+            <img src="/images/usa_flag.png"/>
             </button>
           </div>
         </div>

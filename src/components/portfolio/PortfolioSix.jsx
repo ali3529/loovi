@@ -1,265 +1,72 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Link, useHistory } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import SimpleReactLightbox from "simple-react-lightbox";
 import { SRLWrapper } from "simple-react-lightbox";
+import { getPortfiloData } from "../../services/UseSantyClient";
 
 const TabListContent = ["All", "Development", "Plugin", "Desing", "Branding"];
 
-const AllPortfolioItem = [
-  {
-    img: "img_28",
-    title: "The Gang Blue",
-    meta: "Development, Design",
-    dalayAnimation: "",
-  },
-  {
-    img: "img_29",
-    title: "Core WordPress",
-    meta: "Development, Plugin",
-    dalayAnimation: "100",
-  },
-  {
-    img: "img_30",
-    title: "Platform Audit",
-    meta: "Development, Branding",
-    dalayAnimation: "100",
-  },
-  {
-    img: "img_31",
-    title: "Medieval origins",
-    meta: "Development, Design",
-    dalayAnimation: "100",
-  },
-  {
-    img: "img_32",
-    title: "Designer’s Checklist",
-    meta: "Development, Plugin",
-    dalayAnimation: "100",
-  },
-];
-const Development = [
-  {
-    img: "img_31",
-    title: "Medieval origins",
-    meta: "Development, Design",
-    dalayAnimation: "0",
-  },
-];
-
-const Plugin = [
-  {
-    img: "img_30",
-    title: "Platform Audit",
-    meta: "Development, Plugin",
-    dalayAnimation: "0",
-  },
-];
-
-const Design = [
-  {
-    img: "img_32",
-    title: "Designer’s Checklist",
-    meta: "Development, Design",
-    dalayAnimation: "0",
-  },
-];
-
-const Branding = [
-  {
-    img: "img_29",
-    title: "Core WordPress",
-    meta: "Development, Branding",
-    dalayAnimation: "0",
-  },
-];
-
-const PortfolioSix = () => {
+const PortfolioSix = ({portfilo}) => {
+  const history = useHistory();
+  const { t, i18n } = useTranslation();
+  const AllPortfolioItem = [
+    {
+      img: portfilo?.portfoli_1_image?.asset?.url,
+      title:i18n.language == "en" ?portfilo?.portfolio_1_title:portfilo?.portfolio_1_title_fa,
+      meta: i18n.language == "en" ?portfilo?.portfolio_1_description:portfilo?.portfolio_1_description_fa,
+      dalayAnimation: "",
+      description: i18n.language == "en" ?portfilo?.portfolio_1_detail_description:portfilo?.portfolio_1_detail_description_fa,
+    },
+    {
+      img: portfilo?.portfoli_2_image?.asset?.url,
+      title:i18n.language == "en" ?portfilo?.portfolio_2_title:portfilo?.portfolio_2_title_fa,
+      meta: i18n.language == "en" ?portfilo?.portfolio_2_description:portfilo?.portfolio_2_description_fa,
+      dalayAnimation: "100",
+      description: i18n.language == "en" ?portfilo?.portfolio_2_detail_description:portfilo?.portfolio_2_detail_description_fa,
+    },
+    {
+      img: portfilo?.portfoli_3_image?.asset?.url,
+      title:i18n.language == "en" ?portfilo?.portfolio_3_title:portfilo?.portfolio_3_title_fa,
+      meta: i18n.language == "en" ?portfilo?.portfolio_3_description:portfilo?.portfolio_3_description_fa,
+      dalayAnimation: "100",
+      description: i18n.language == "en" ?portfilo?.portfolio_3_detail_description:portfilo?.portfolio_3_detail_description_fa,
+    },
+  ];
   return (
-    <SimpleReactLightbox>
-      <Tabs className="portfolio-container">
-        <div className="controls po-control-two text-center mb-90 md-mb-50 mt-90 md-mt-60">
-          <TabList className="d-flex flex-wrap justify-content-center">
-            {TabListContent.map((tab, i) => (
-              <Tab key={i}>
-                <button type="button" className="control">
-                  {tab}
-                </button>
-              </Tab>
-            ))}
-          </TabList>
+    <div className="mixitUp-container  gutter-space-one d-flex flex-wrap">
+      {AllPortfolioItem.map((item, i) => (
+        <div
+          className="mix"
+          key={i}
+          data-aos="fade-right"
+          data-aos-delay={item.dalayAnimation}
+        >
+          <div className="portfolio-block-two position-relative">
+            <div className="d-flex align-items-center justify-content-center">
+              <img
+                src={item.img}
+                alt={item.meta}
+                className="w-100 h-100 tran4s img-meta"
+              />
+              <div className="fancybox">
+                <i className="fa fa-arrows-alt" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div className="hover-content">
+              <h3 onClick={()=> history.push("/portfolio-details", {item:item} )}>
+                
+                <Link  to="/portfolio-details"  state={{item:item}} >{item.title}</Link>
+              </h3>
+              <div className="tag">{item.meta}</div>
+            </div>
+            {/* /.hover-content */}
+          </div>
+          {/* /.portfolio-block-two */}
         </div>
-        {/* End pc-control-one */}
-        <SRLWrapper>
-          <TabPanel>
-            <div className="mixitUp-container  gutter-space-one d-flex flex-wrap">
-              {AllPortfolioItem.map((item, i) => (
-                <div
-                  className="mix"
-                  key={i}
-                  data-aos="fade-right"
-                  data-aos-delay={item.dalayAnimation}
-                >
-                  <div className="portfolio-block-two position-relative">
-                    <div className="d-flex align-items-center justify-content-center">
-                      <img
-                        src={`images/gallery/${item.img}.jpg`}
-                        alt={item.meta}
-                        className="w-100 h-100 tran4s img-meta"
-                      />
-                      <div className="fancybox">
-                        <i className="fa fa-arrows-alt" aria-hidden="true"></i>
-                      </div>
-                    </div>
-                    <div className="hover-content">
-                      <h3>
-                        <Link to="/portfolio-details-v1">{item.title}</Link>
-                      </h3>
-                      <div className="tag">{item.meta}</div>
-                    </div>
-                    {/* /.hover-content */}
-                  </div>
-                  {/* /.portfolio-block-two */}
-                </div>
-              ))}
-            </div>
-            {/* single mixitUp-container */}
-          </TabPanel>
-          <TabPanel>
-            <div className="mixitUp-container gutter-space-one d-flex flex-wrap">
-              {Development.map((item, i) => (
-                <div
-                  className={`mix ${item.imgClass}`}
-                  key={i}
-                  data-aos="fade-right"
-                  data-aos-delay={item.dalayAnimation}
-                >
-                  <div className="portfolio-block-two position-relative">
-                    <div className="d-flex align-items-center justify-content-center">
-                      <img
-                        src={`images/gallery/${item.img}.jpg`}
-                        alt={item.meta}
-                        className="w-100 h-100 tran4s img-meta"
-                      />
-                      <div className="fancybox">
-                        <i className="fa fa-arrows-alt" aria-hidden="true"></i>
-                      </div>
-                    </div>
-                    <div className="hover-content">
-                      <h3>
-                        <Link to="/portfolio-details-v1">{item.title}</Link>
-                      </h3>
-                      <div className="tag">{item.meta}</div>
-                    </div>
-                    {/* /.hover-content */}
-                  </div>
-                  {/* /.portfolio-block-two */}
-                </div>
-              ))}
-            </div>
-          </TabPanel>
-          <TabPanel>
-            <div className="mixitUp-container gutter-space-one d-flex flex-wrap">
-              {Plugin.map((item, i) => (
-                <div
-                  className={`mix ${item.imgClass}`}
-                  key={i}
-                  data-aos="fade-right"
-                  data-aos-delay={item.dalayAnimation}
-                >
-                  <div className="portfolio-block-two position-relative">
-                    <div className="d-flex align-items-center justify-content-center">
-                      <img
-                        src={`images/gallery/${item.img}.jpg`}
-                        alt={item.meta}
-                        className="w-100 h-100 tran4s img-meta"
-                      />
-                      <div className="fancybox">
-                        <i className="fa fa-arrows-alt" aria-hidden="true"></i>
-                      </div>
-                    </div>
-                    <div className="hover-content">
-                      <h3>
-                        <Link to="/portfolio-details-v1">{item.title}</Link>
-                      </h3>
-                      <div className="tag">{item.meta}</div>
-                    </div>
-                    {/* /.hover-content */}
-                  </div>
-                  {/* /.portfolio-block-two */}
-                </div>
-              ))}
-            </div>
-          </TabPanel>
-          <TabPanel>
-            <div className="mixitUp-container gutter-space-one d-flex flex-wrap">
-              {Design.map((item, i) => (
-                <div
-                  className={`mix ${item.imgClass}`}
-                  key={i}
-                  data-aos="fade-right"
-                  data-aos-delay={item.dalayAnimation}
-                >
-                  <div className="portfolio-block-two position-relative">
-                    <div className="d-flex align-items-center justify-content-center">
-                      <img
-                        src={`images/gallery/${item.img}.jpg`}
-                        alt={item.meta}
-                        className="w-100 h-100 tran4s img-meta"
-                      />
-                      <div className="fancybox">
-                        <i className="fa fa-arrows-alt" aria-hidden="true"></i>
-                      </div>
-                    </div>
-                    <div className="hover-content">
-                      <h3>
-                        <Link to="/portfolio-details-v1">{item.title}</Link>
-                      </h3>
-                      <div className="tag">{item.meta}</div>
-                    </div>
-                    {/* /.hover-content */}
-                  </div>
-                  {/* /.portfolio-block-two */}
-                </div>
-              ))}
-            </div>
-          </TabPanel>
-          <TabPanel>
-            <div className="mixitUp-container gutter-space-one d-flex flex-wrap">
-              {Branding.map((item, i) => (
-                <div
-                  className={`mix ${item.imgClass}`}
-                  key={i}
-                  data-aos="fade-right"
-                  data-aos-delay={item.dalayAnimation}
-                >
-                  <div className="portfolio-block-two position-relative">
-                    <div className="d-flex align-items-center justify-content-center">
-                      <img
-                        src={`images/gallery/${item.img}.jpg`}
-                        alt={item.meta}
-                        className="w-100 h-100 tran4s img-meta"
-                      />
-                      <div className="fancybox">
-                        <i className="fa fa-arrows-alt" aria-hidden="true"></i>
-                      </div>
-                    </div>
-                    <div className="hover-content">
-                      <h3>
-                        <Link to="/portfolio-details-v1">{item.title}</Link>
-                      </h3>
-                      <div className="tag">{item.meta}</div>
-                    </div>
-                    {/* /.hover-content */}
-                  </div>
-                  {/* /.portfolio-block-two */}
-                </div>
-              ))}
-            </div>
-          </TabPanel>
-        </SRLWrapper>
-      </Tabs>
-    </SimpleReactLightbox>
+      ))}
+    </div>
   );
 };
 

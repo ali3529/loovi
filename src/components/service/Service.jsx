@@ -1,40 +1,34 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
-const serviceContent = [
-  {
-    img: "img_36",
-    titleTextOne: "Friendly dashboard &",
-    TitleTextTwo: "Cool Interface.",
-  },
-  {
-    img: "img_37",
-    titleTextOne: " Interface Design",
-    TitleTextTwo: "with UX.",
-  },
-  {
-    img: "img_38",
-    titleTextOne: " Social Media & Online",
-    TitleTextTwo: "Marketing.",
-  },
-  {
-    img: "img_39",
-    titleTextOne: " Mobile Application",
-    TitleTextTwo: "Design & Dev.",
-  },
-  {
-    img: "img_40",
-    titleTextOne: " Keyword Research &",
-    TitleTextTwo: "Article writing.",
-  },
-  {
-    img: "img_41",
-    titleTextOne: " HTML & WordPress",
-    TitleTextTwo: "Development.",
-  },
-];
 
-const Service = () => {
+
+const Service = ({data}) => {
+  const { t, i18n } = useTranslation();
+  const serviceContent = 
+  
+  [
+    {
+      img: "img_36",
+      titleTextOne:i18n.language == "en" ?data?.serviceContent?.service_content_titleTextOne:data?.serviceContent?.service_content_titleTextOne_fa ,
+      // "Friendly dashboard &",
+      // TitleTextTwo: "Cool Interface.",
+    },
+    {
+      img: "img_37",
+      titleTextOne:i18n.language == "en" ?data?.serviceContent?.service_content_2_titleTextOne:data?.serviceContent?.service_content_2_titleTextOne_fa ,
+      //  " Interface Design",
+      // TitleTextTwo: "with UX.",
+    },
+    {
+      img: "img_38",
+      titleTextOne:i18n.language == "en" ?data?.serviceContent?.service_content_3_titleTextOne:data?.serviceContent?.service_content_3_titleTextOne_fa ,
+      // " Social Media & Online",
+      // TitleTextTwo: "Marketing.",
+    }
+  
+  ];
   return (
     <div className="row">
       {serviceContent.map((val, i) => (
@@ -47,15 +41,16 @@ const Service = () => {
             />
             <div className="hover-content">
               <h4 className="font-gordita">
-                <Link to="/service-details">
+                <Link to="#">
                   {" "}
-                  {val.titleTextOne} <br /> {val.TitleTextTwo}
+                  {val.titleTextOne} 
+                  {/* <br /> {val.TitleTextTwo} */}
                 </Link>
               </h4>
 
-              <Link to="/service-details" className="arrow">
+              {/* <Link to="/service-details" className="arrow">
                 <i className="flaticon-right-arrow-1"></i>{" "}
-              </Link>
+              </Link> */}
             </div>
             {/* <!-- /.hover-content --> */}
           </div>

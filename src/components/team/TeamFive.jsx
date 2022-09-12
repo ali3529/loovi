@@ -1,46 +1,36 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
-const TeamContent = [
-  {
-    designation: "Developer",
-    name: "George Cortez",
-    img: "img_66",
-    animationDelay: "200",
-  },
-  {
-    designation: "Co-Founder",
-    name: "Juan Barber",
-    img: "img_67",
-    animationDelay: "250",
-  },
-  {
-    designation: "Marc McCormick",
-    name: "Marketing Crew ",
-    img: "img_68",
-    animationDelay: "300",
-  },
-  {
-    designation: "Customer management",
-    name: "Maud Ellis",
-    img: "img_69",
-    animationDelay: "50",
-  },
-  {
-    designation: "Senior Designer",
-    name: "Jhon Du",
-    img: "img_70",
-    animationDelay: "100",
-  },
-  {
-    designation: "Co-Founder",
-    name: "Juan Barber",
-    img: "img_71",
-    animationDelay: "150",
-  },
-];
 
-const TeamFive = () => {
+
+const TeamFive = ({data}) => {
+  const { t, i18n } = useTranslation();
+  const TeamContent = [
+    {
+      designation: i18n.language == "en" ?data?.our_team?.ourteam_skill:data?.our_team?.ourteam_skill_fa,
+      name:i18n.language == "en" ?data?.our_team?.ourteam_name:data?.our_team?.ourteam_name_fa,
+      // img: data?.our_team?.our_team_image_1?.asset?.url,
+      animationDelay: "200",
+      img: "img_67",
+    },
+    {
+      designation: i18n.language == "en" ?data?.our_team?.ourteam_skill:data?.our_team?.ourteam_skill_fa,
+      name:i18n.language == "en" ?data?.our_team?.ourteam_name:data?.our_team?.ourteam_name_fa,
+      // img: data?.our_team?.our_team_image_1?.asset?.url,
+      img: "img_67",
+      animationDelay: "250",
+    },
+    {
+      designation: i18n.language == "en" ?data?.our_team?.ourteam_skill:data?.our_team?.ourteam_skill_fa,
+      name:i18n.language == "en" ?data?.our_team?.ourteam_name:data?.our_team?.ourteam_name_fa,
+      // img: data?.our_team?.our_team_image_1?.asset?.url,
+      img: "img_68",
+      animationDelay: "300",
+    }
+  
+   
+  ];
   return (
     <>
       {TeamContent.map((item, i) => (
@@ -59,7 +49,7 @@ const TeamFive = () => {
             <div className="position">{item.designation}</div>
           </Link>
         </div>
-      ))}
+       ))} 
     </>
   );
 };

@@ -1,11 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import Routes from "./router/Routes";
 import ScrollToTop from "./components/ScrollToTop";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import "./assets/main.scss";
+
+
+
 const App = () => {
+  const [load, setload] = useState(true)
+
+  const language = localStorage.getItem('lan') == undefined ? "en" : localStorage.getItem('lan')
+  if (language == "en") {
+    Promise.all([
+      import("./assets/main.scss"),
+    ]).finally(()=>setload(false))
+  } else {
+    Promise.all([
+      import("./assets/main_rtl.scss"),
+    ]).finally(()=>setload(false))
+  }
+
   useEffect(() => {
     AOS.init({
       duration: 1200,
@@ -15,6 +30,10 @@ const App = () => {
 
   return (
     <>
+    {
+      load?
+      ''
+      :<>
       <Helmet>
         <title>Deski - Saas & Software React Template</title>
         <meta property="og:site_name" content="deski" />
@@ -42,6 +61,8 @@ const App = () => {
       <ScrollToTop />
       <Routes />
     </>
+    }</>
+    
   );
 };
 

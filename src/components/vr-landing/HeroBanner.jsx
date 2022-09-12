@@ -1,14 +1,17 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const HeroBanner = ({data}) => {
+  const { t, i18n } = useTranslation();
   console.log("dsvjskvsd",data);
-  const {section_1_title,section_1_discription,section_1_image}=data
+  const {section_1_title,section_1_title_fa,section_1_discription,section_1_discription_fa,section_1_image}=data
+  
   return (
     <>
      <div className="row">
       <div className="col-lg-6">
         <h1 className="hero-heading" data-aos="fade-right">
-          {section_1_title}
+          {i18n.language=="en"?section_1_title:section_1_title_fa}
         </h1>
         <p
           className="hero-sub-heading"
@@ -16,7 +19,7 @@ const HeroBanner = ({data}) => {
           data-aos-delay="100"
         >
           {/* Interact with your audience with new  technologies! */}
-          {section_1_discription}
+          {i18n.language=="en"?section_1_discription:section_1_discription_fa}
         </p>
         {/* <div
           className="d-lg-flex align-items-center justify-content-between pr-xl-5"

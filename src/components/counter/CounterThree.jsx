@@ -1,30 +1,37 @@
 import React from "react";
 import CountUp from "react-countup";
+import { useTranslation } from "react-i18next";
 import VisibilitySensor from "react-visibility-sensor";
 
+
+const CounterThree = ({data}) => {
+  const { t, i18n } = useTranslation();
+  console.log("dvk;msd",data?.aboutus_counter);
 const counterUpContent = [
   {
     icon: "23",
     startCount: "0",
     endCount: "13",
-    meta: "Ticket Sold",
+    endCounts: data?.aboutus_counter?.about_us_counter_1,
+    meta:i18n.language == "en" ? data?.aboutus_counter?.about_us_counter_title_1: data?.aboutus_counter?.about_us_counter_1_title_fa,
   },
   {
     icon: "24",
     startCount: "0",
     endCount: "3000",
-    meta: "Event organisers",
+    endCounts: data?.aboutus_counter?.about_us_counter_2,
+    meta:i18n.language == "en" ? data?.aboutus_counter?.about_us_counter_title_2: data?.aboutus_counter?.about_us_counter_2_title_fa,
   },
   {
     icon: "25",
     startCount: "0",
     endCount: "134",
-    meta: "Countries",
+    endCounts: data?.aboutus_counter?.about_us_counter_3,
+    meta:i18n.language == "en" ? data?.aboutus_counter?.about_us_counter_title_3: data?.aboutus_counter?.about_us_counter_3_title_fa,
   },
 ];
-
-const CounterThree = () => {
   const [focus, setFocus] = React.useState(false);
+
   return (
     <div className="row justify-content-center">
       {counterUpContent.map((val, i) => (

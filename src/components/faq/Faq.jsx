@@ -6,28 +6,32 @@ import {
   AccordionItemButton,
   AccordionItemPanel,
 } from "react-accessible-accordion";
+import { useTranslation } from "react-i18next";
 
-const FaqContent = [
-  {
-    title: "High performance.",
-    desc: `ُُُScene detection on the Loovi platform has the highest performance and support flagship and old devices .`,
-    expand: "a",
-  },
-  {
-    title: "Work on wide-range of devices and browsers",
-    desc: ` It only takes 5 minutes. Set-up is smooth & simple, with fully
-    customisable page design to reflect your brand lorem dummy.`,
-    expand: "b",
-  },
-  {
-    title: "Start selling ticket",
-    desc: ` It only takes 5 minutes. Set-up is smooth & simple, with fully
-    customisable page design to reflect your brand lorem dummy.`,
-    expand: "c",
-  },
-];
 
-const Faq = () => {
+
+const Faq = ({data}) => {
+  const { t, i18n } = useTranslation();
+  const FaqContent = [
+    {
+      title: i18n.language == "en" ?data?.faq?.faq_1:data?.faq?.faq_1_fa,
+      desc: i18n.language == "en" ?data?.faq?.faq_1_description:data?.faq?.faq_1_description_fa,
+      expand: "a",
+    },
+    {
+     
+      title: i18n.language == "en" ?data?.faq?.faq_2:data?.faq?.faq_2_fa,
+      desc: i18n.language == "en" ?data?.faq?.faq_2_description:data?.faq?.faq_2_description_fa,
+      expand: "b",
+    },
+    {
+     
+      title: i18n.language == "en" ?data?.faq?.faq_2:data?.faq?.faq_2_fa,
+      desc: i18n.language == "en" ?data?.faq?.faq_2_description:data?.faq?.faq_2_description_fa,
+      expand: "c",
+    },
+  ];
+ 
   return (
     <div className="accordion-style-two pr-5">
       <div className="faq-wrraper">

@@ -41,7 +41,7 @@ const VrLanding = () => {
         </div>
       </div>
 
-      <LatestProduct />
+      {/* <LatestProduct /> */}
 
       <div
         className="fancy-feature-thirtySeven lg-container pt-120"

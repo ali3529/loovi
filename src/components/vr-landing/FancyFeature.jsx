@@ -1,8 +1,10 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const FancyFeature = ({data}) => {
+  const { t, i18n } = useTranslation();
   const rating = ["fa-star", "fa-star", "fa-star", "fa-star", "fa-star"];
-  const {section_2_title,section_2_image}=data
+  const {section_2_title,section_2_title_fa,section_2_image}=data
   console.log("sdbvdsbsdb",section_2_image);
   return (
     <div className="container">
@@ -10,7 +12,7 @@ const FancyFeature = ({data}) => {
         <div className="col-xl-11 m-auto" data-aos="fade-up">
           <div className="title-style-fifteen text-center">
             {/* <h2>Quality is matter.</h2> */}
-            <h2>{section_2_title}</h2>
+            <h2>{i18n.language=="en"?section_2_title:section_2_title_fa}</h2>
           </div>
         </div>
       </div>
